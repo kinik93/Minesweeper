@@ -1,0 +1,21 @@
+<div *ngFor="let r of rowArray; let i = index" class="row">
+  <div *ngFor="let c of colArray; let j = index" style="display: inline-block;">
+    <button
+        type="button"
+        class="btn"
+        [ngClass]="{'btn-not-revealed': !this.grid[i][j].getIsRevealed(),
+                    'btn-revealed': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() > 0),
+                    'btn-flag': this.grid[i][j].getIsFlag(),
+                    'btn-revealed-null': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 0 ),
+                    'btn-mine': (this.grid[i][j].getIsMine() && this.grid[i][j].getIsRevealed())
+        }"
+        (click)="onCellClick(i, j)"
+        (contextmenu)="onRightCellClick($event, i, j)"
+      >
+      {{this.grid[i][j].getAdjMines()}}
+    </button>
+  </div>
+</div>
+
+
+

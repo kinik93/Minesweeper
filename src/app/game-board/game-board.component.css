@@ -1,0 +1,37 @@
+.btn {
+  margin: 1px;
+  background-color: #CFCFCF;
+  font-size: 16px;
+}
+
+.btn-not-revealed {
+  background-color: #CFCFCF;
+  color: #CFCFCF;
+}
+
+.btn-revealed {
+  background-color: #828282;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+
+.btn-revealed-null {
+  background-color: #828282;
+  color: #828282;
+}
+
+.btn-flag {
+  background-image: url("../../assets/flag.png");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  color: transparent;
+}
+
+.btn-mine {
+  background-image: url("../../assets/bomb-512.png");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  color: transparent;
+}
