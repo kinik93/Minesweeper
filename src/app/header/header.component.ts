@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
     this.gameBoardService.setTotalMines(newMines);
     this.gameBoardService.initializeEmptyGrid();
     this.gameBoardService.setFirstClick(true);
+    this.gameBoardService.setRevealedMines(newMines);
     this.gameBoardService.revMines.emit(this.gameBoardService.getTotalMines());
     this.gameBoardService.gridChange.next(this.gameBoardService.getGrid());
     this.gameBoardService.stopChrono();
