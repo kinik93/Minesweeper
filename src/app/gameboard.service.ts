@@ -191,6 +191,7 @@ export class GameBoardService {
     }
     if (revMines === (this.nRows * this.nColumns) - this.nMines ) {
       alert('You win');
+      this.stopChrono();
     }
   }
 
@@ -210,10 +211,13 @@ export class GameBoardService {
     });
   }
 
+  zeroChrono(){
+    this.elapsedTime.emit(0);
+  }
+
   stopChrono() {
     if (this.chronoSubscription !== undefined) {
       this.chronoSubscription.unsubscribe();
-      this.elapsedTime.emit(0);
     }
   }
 }
