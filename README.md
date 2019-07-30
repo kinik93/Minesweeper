@@ -15,9 +15,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 | Package  |  Version | 
 |---|---|
 | Angular  |  7.3.4 |  
+<<<<<<< HEAD
 |  Bootstrap | 3.4.1  | 
 
-Install Bootstrap with `npm ...`
+Install Bootstrap with `npm install --save bootstrap@3`
 
 ## Further help
 
