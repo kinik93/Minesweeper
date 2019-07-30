@@ -26,7 +26,7 @@ export class GameBoardComponent implements OnInit {
     this.colArray = Array.from({length: this.nColumns}, (x, i) => i);
     this.grid = this.gameBoardService.getGrid();
 
-    this.elapsedTime = this.gameBoardService.elapsedTime;
+    //this.elapsedTime = this.gameBoardService.elapsedTime;
   }
 
   onCellClick(x: number, y: number) {
@@ -39,6 +39,7 @@ export class GameBoardComponent implements OnInit {
     if (!this.grid[x][y].getIsRevealed() && !this.grid[x][y].getIsFlag()) {
       if (this.grid[x][y].getIsMine()) {
         this.gameBoardService.revealAllMines();
+        this.gameBoardService.stopChrono();
         alert("You Loose");
       } else {
         if (this.grid[x][y].getAdjMines() === 0) {

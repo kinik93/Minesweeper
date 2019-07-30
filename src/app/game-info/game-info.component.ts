@@ -29,6 +29,8 @@ export class GameInfoComponent implements OnInit {
     this.gameBoardService.initializeEmptyGrid();
     this.gameBoardService.setFirstClick(true);
     this.gameBoardService.stopChrono();
+    this.gameBoardService.setRevealedMines(this.gameBoardService.getTotalMines());
+    this.revMines = this.gameBoardService.getTotalMines();
     this.elapsedTime = 0;
   }
 }

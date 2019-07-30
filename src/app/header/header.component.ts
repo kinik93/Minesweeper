@@ -13,4 +13,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  onBeginnerClick(){
+    /*this.gameBoardService.setNrows(15);
+    this.gameBoardService.setNcolumns(15);
+    this.gameBoardService.initializeEmptyGrid();*/
+  }
+
 }
