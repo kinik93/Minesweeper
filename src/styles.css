@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --btn-not-rev-color: #d3d3d3;
+  --btn-revealed: #9f9f9f;
+  --btn-revealed-1: #0000ff;
+  --btn-revealed-2: #006400;
+  --btn-revealed-3: #ff0000;
+  --btn-revealed-4: #00008b;
+  --btn-revealed-5: #8b4513;
+  --btn-revealed-6: #00FFFF;
+  --btn-revealed-7: #000000;
+  --btn-revealed-8: #ffd700;
+}

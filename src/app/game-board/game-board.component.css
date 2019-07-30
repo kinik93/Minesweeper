@@ -1,23 +1,66 @@
 .btn {
   margin: 1px;
-  background-color: #CFCFCF;
+  padding: 2px 8px;
+  background-color: var(--btn-not-rev-color);
   font-size: 16px;
 }
 
 .btn-not-revealed {
-  background-color: #CFCFCF;
-  color: #CFCFCF;
-}
-
-.btn-revealed {
-  background-color: #828282;
-  color: #1a1a1a;
-  font-weight: bold;
+  background-color: var(--btn-not-rev-color);
+  color: var(--btn-not-rev-color);
 }
 
 .btn-revealed-null {
-  background-color: #828282;
-  color: #828282;
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed);
+}
+
+.btn-revealed-1 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-1);
+  font-weight: bold;
+}
+
+.btn-revealed-2 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-2);
+  font-weight: bold;
+}
+
+.btn-revealed-3 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-3);
+  font-weight: bold;
+}
+
+.btn-revealed-4 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-4);
+  font-weight: bold;
+}
+
+.btn-revealed-5 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-5);
+  font-weight: bold;
+}
+
+.btn-revealed-6 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-6);
+  font-weight: bold;
+}
+
+.btn-revealed-7 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-7);
+  font-weight: bold;
+}
+
+.btn-revealed-8 {
+  background-color: var(--btn-revealed);
+  color: var(--btn-revealed-8);
+  font-weight: bold;
 }
 
 .btn-flag {

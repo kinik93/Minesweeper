@@ -4,7 +4,14 @@
         type="button"
         class="btn"
         [ngClass]="{'btn-not-revealed': !this.grid[i][j].getIsRevealed(),
-                    'btn-revealed': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() > 0),
+                    'btn-revealed-1': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 1),
+                    'btn-revealed-2': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 2),
+                    'btn-revealed-3': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 3),
+                    'btn-revealed-4': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 4),
+                    'btn-revealed-5': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 5),
+                    'btn-revealed-6': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 6),
+                    'btn-revealed-7': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 7),
+                    'btn-revealed-8': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 8),
                     'btn-flag': this.grid[i][j].getIsFlag(),
                     'btn-revealed-null': (this.grid[i][j].getIsRevealed() && this.grid[i][j].getAdjMines() === 0 ),
                     'btn-mine': (this.grid[i][j].getIsMine() && this.grid[i][j].getIsRevealed())

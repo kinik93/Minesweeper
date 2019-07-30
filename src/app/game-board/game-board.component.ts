@@ -17,7 +17,9 @@ export class GameBoardComponent implements OnInit {
 
   elapsedTime: number;
 
-  constructor(private gameBoardService: GameBoardService) { }
+  constructor(private gameBoardService: GameBoardService) {
+
+  }
 
   ngOnInit() {
     this.nRows = this.gameBoardService.getNrows();
@@ -26,7 +28,16 @@ export class GameBoardComponent implements OnInit {
     this.colArray = Array.from({length: this.nColumns}, (x, i) => i);
     this.grid = this.gameBoardService.getGrid();
 
-    //this.elapsedTime = this.gameBoardService.elapsedTime;
+    this.gameBoardService.gridChange
+      .subscribe(
+        (newGrid: Cell[][]) => {
+          this.grid = newGrid;
+          this.nRows = this.gameBoardService.getNrows();
+          this.nColumns = this.gameBoardService.getNcolumns();
+          this.rowArray = Array.from({length: this.nRows}, (x, i) => i);
+          this.colArray = Array.from({length: this.nColumns}, (x, i) => i);
+        }
+      );
   }
 
   onCellClick(x: number, y: number) {

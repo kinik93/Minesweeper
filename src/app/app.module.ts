@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { HeaderComponent } from './header/header.component';
 import { GameInfoComponent } from './game-info/game-info.component';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameBoardComponent,
     HeaderComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

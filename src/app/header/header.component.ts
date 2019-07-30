@@ -13,10 +13,28 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBeginnerClick(){
-    /*this.gameBoardService.setNrows(15);
-    this.gameBoardService.setNcolumns(15);
-    this.gameBoardService.initializeEmptyGrid();*/
+  changeDifficulty(newDiff: string, newRows, newCols, newMines) {
+    this.gameBoardService.setDifficulty(newDiff);
+    this.gameBoardService.setNrows(newRows);
+    this.gameBoardService.setNcolumns(newCols);
+    this.gameBoardService.setTotalMines(newMines);
+    this.gameBoardService.initializeEmptyGrid();
+    this.gameBoardService.setFirstClick(true);
+    this.gameBoardService.revMines.emit(this.gameBoardService.getTotalMines());
+    this.gameBoardService.gridChange.next(this.gameBoardService.getGrid());
+    this.gameBoardService.stopChrono();
+  }
+
+  onBeginnerClick() {
+    this.changeDifficulty('Beginner', 9, 9, 10);
+  }
+
+  onIntermediateClick() {
+    this.changeDifficulty('Intermediate', 16, 16, 40);
+  }
+
+  onExpertClick() {
+    this.changeDifficulty('Expert', 16, 30, 99);
   }
 
 }

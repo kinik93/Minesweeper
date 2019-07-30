@@ -1,5 +1,5 @@
 import { Cell, Point } from './game-board/cell.model';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subscription, Subject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 export class GameBoardService {
@@ -9,6 +9,9 @@ export class GameBoardService {
   nMines: number;
   revealedMines: number;
   firstClick: boolean;
+  difficulty: string;
+
+  gridChange = new Subject<Cell[][]>();
 
   revMines = new EventEmitter<number>();
   elapsedTime = new EventEmitter<number>();
@@ -21,6 +24,7 @@ export class GameBoardService {
     this.nMines = 10;
     this.revealedMines = this.nMines;
     this.firstClick = true;
+    this.difficulty = 'Beginner';
 
     this.initializeEmptyGrid();
   }
@@ -74,6 +78,14 @@ export class GameBoardService {
 
   getGrid() {
     return this.grid;
+  }
+
+  getDifficulty() {
+    return this.difficulty;
+  }
+
+  setDifficulty(difficulty) {
+    this.difficulty = difficulty;
   }
 
   initializeEmptyGrid() {
@@ -155,11 +167,13 @@ export class GameBoardService {
     for (let i = x - 1 ; i < x + 2; i++) {
       for (let j = y - 1 ; j < y + 2; j++) {
         if (i >= 0 && i < this.nRows && j >= 0 && j < this.nColumns) {
-          if (this.grid[i][j].getAdjMines() === 0 && !this.grid[i][j].getIsRevealed()) {
-            this.grid[i][j].setIsRevealed(true);
-            this.revealZeroCells(i, j);
-          } else if (this.grid[i][j].getAdjMines() > 0 && !this.grid[i][j].getIsRevealed()) {
-            this.grid[i][j].setIsRevealed(true);
+          if (!this.grid[i][j].getIsFlag()) {
+            if (this.grid[i][j].getAdjMines() === 0 && !this.grid[i][j].getIsRevealed()) {
+              this.grid[i][j].setIsRevealed(true);
+              this.revealZeroCells(i, j);
+            } else if (this.grid[i][j].getAdjMines() > 0 && !this.grid[i][j].getIsRevealed()) {
+              this.grid[i][j].setIsRevealed(true);
+            }
           }
         }
       }
@@ -197,6 +211,9 @@ export class GameBoardService {
   }
 
   stopChrono() {
-    this.chronoSubscription.unsubscribe();
+    if (this.chronoSubscription !== undefined) {
+      this.chronoSubscription.unsubscribe();
+      this.elapsedTime.emit(0);
+    }
   }
 }
