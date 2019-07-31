@@ -14,11 +14,11 @@ export class GameBoardComponent implements OnInit {
   nColumns: number;
   rowArray: number[] = [];
   colArray: number[] = [];
+  winning: boolean;
 
   elapsedTime: number;
 
   constructor(private gameBoardService: GameBoardService) {
-
   }
 
   ngOnInit() {
@@ -27,6 +27,7 @@ export class GameBoardComponent implements OnInit {
     this.rowArray = Array.from({length: this.nRows}, (x, i) => i);
     this.colArray = Array.from({length: this.nColumns}, (x, i) => i);
     this.grid = this.gameBoardService.getGrid();
+    this.winning = this.gameBoardService.getWinning();
 
     this.gameBoardService.gridChange
       .subscribe(
@@ -38,6 +39,10 @@ export class GameBoardComponent implements OnInit {
           this.colArray = Array.from({length: this.nColumns}, (x, i) => i);
         }
       );
+
+    this.gameBoardService.winEvent.subscribe(
+      (winState: boolean) => (this.winning = winState)
+    );
   }
 
   onCellClick(x: number, y: number) {

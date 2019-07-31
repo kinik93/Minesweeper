@@ -10,11 +10,14 @@ export class GameBoardService {
   revealedMines: number;
   firstClick: boolean;
   difficulty: string;
+  winning = false;
+  counterTime = 0;
 
   gridChange = new Subject<Cell[][]>();
 
   revMines = new EventEmitter<number>();
   elapsedTime = new EventEmitter<number>();
+  winEvent = new EventEmitter<boolean>();
 
   private chronoSubscription: Subscription;
 
@@ -86,6 +89,22 @@ export class GameBoardService {
 
   setDifficulty(difficulty) {
     this.difficulty = difficulty;
+  }
+
+  getWinning() {
+    return this.winning;
+  }
+
+  setWinning(status: boolean) {
+    this.winning = status;
+  }
+
+  getCounterTime() {
+    return this.counterTime;
+  }
+
+  setCounterTime(tmpTime: number) {
+    this.counterTime = tmpTime;
   }
 
   initializeEmptyGrid() {
@@ -190,7 +209,9 @@ export class GameBoardService {
       }
     }
     if (revMines === (this.nRows * this.nColumns) - this.nMines ) {
-      alert('You win');
+      console.log('you win');
+      this.winning = true;
+      this.winEvent.emit(true);
       this.stopChrono();
     }
   }
@@ -208,10 +229,12 @@ export class GameBoardService {
   startChrono() {
     this.chronoSubscription = interval(1000).subscribe(count => {
       this.elapsedTime.emit(count);
+      this.counterTime = count;
     });
   }
 
-  zeroChrono(){
+  zeroChrono() {
+    this.counterTime = 0;
     this.elapsedTime.emit(0);
   }
 

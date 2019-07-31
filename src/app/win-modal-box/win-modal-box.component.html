@@ -1,0 +1,12 @@
+<div class="backdrop"></div>
+<div class="win-box">
+  <h3>YOU WIN!!!</h3>
+  <div>
+    <input class="form-control input-md"
+        type="text"
+        style="float: left; width: 80%"
+        [(ngModel)]="inputName"
+        autofocus placeholder="Enter your nickname">
+    <button type="submit" class="btn btn-primary" (click)="onSaveClick()">Save</button>
+  </div>
+</div>

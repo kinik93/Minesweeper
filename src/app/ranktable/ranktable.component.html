@@ -1,0 +1,22 @@
+<div class="btn-group-vertical" style="float: left; margin-left: 5vw;">
+  <button type="button" class="btn btn-primary" (click)="onBeginnerClick()">Beginner</button>
+  <button type="button" class="btn btn-success" (click)="onIntermediateClick()">Intermediate</button>
+  <button type="button" class="btn btn-danger" (click)="onExpertClick()">Expert</button>
+</div>
+<div class="ranktable">
+  <label>{{diff}} ranking</label>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th> # </th>
+        <th>Nickname</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let item of loadedRanks; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.time}}</td>
+    </tr>
+  </table>
+</div>

@@ -9,9 +9,15 @@ import { GameBoardService } from '../gameboard.service';
 export class GameInfoComponent implements OnInit {
 
   revMines: number;
-  elapsedTime = 0;
+  elapsedTime: number;
 
   constructor(private gameBoardService: GameBoardService) {
+    this.elapsedTime = this.gameBoardService.getCounterTime();
+  }
+
+  ngOnInit() {
+    this.revMines = this.gameBoardService.getRevealedMines();
+
     this.gameBoardService.revMines.subscribe(
       (nRevStatus: number) => (this.revMines = nRevStatus)
     );
@@ -19,10 +25,6 @@ export class GameInfoComponent implements OnInit {
     this.gameBoardService.elapsedTime.subscribe(
       (tmpTime: number) => (this.elapsedTime = tmpTime)
     );
-  }
-
-  ngOnInit() {
-    this.revMines = this.gameBoardService.getRevealedMines();
   }
 
   onReloadClick() {
