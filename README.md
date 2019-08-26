@@ -2,7 +2,7 @@
 
 This project is a simple [Angular](https://angular.io/) implementation of the popular [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game)) game.
 
-You can try a live of the game [here](https://kinik93.github.io/Minesweeper/)
+You can try a live of the game [HERE](https://kinik93.github.io/Minesweeper/)
 
 ## Development server
 
