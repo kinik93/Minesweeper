@@ -23,6 +23,9 @@ export class WinModalBoxComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Save data for ranking table to firebase server
+   */
   onSaveClick() {
     const postData = new RankItem(this.inputName,
                                   this.gameBoardService.getCounterTime(),

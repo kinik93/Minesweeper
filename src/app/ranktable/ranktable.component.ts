@@ -18,6 +18,10 @@ export class RanktableComponent implements OnInit {
     this.diff = this.gameboardService.getDifficulty();
   }
 
+  /**
+   * Fetch the ranking from firebase server and sort data appropiately.
+   * @param difficulty the difficulty of ranking to be obtained
+   */
   fetchData(difficulty: string) {
     this.http.get('https://ng-minesweeper.firebaseio.com/ranks.json').pipe(map(
       resData => {

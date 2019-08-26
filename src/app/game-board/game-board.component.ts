@@ -45,6 +45,11 @@ export class GameBoardComponent implements OnInit {
     );
   }
 
+  /**
+   * Start the appropriate action on left-mouse click on a cell with position (x, y)
+   * @param x
+   * @param y
+   */
   onCellClick(x: number, y: number) {
     if (this.gameBoardService.getFirstClick()) {
       this.gameBoardService.plantMines(new Point(x, y));
@@ -68,6 +73,12 @@ export class GameBoardComponent implements OnInit {
     }
   }
 
+  /**
+   * Set the cell state to flag if the cell is not revealed
+   * @param event
+   * @param x
+   * @param y
+   */
   onRightCellClick(event, x: number, y: number) {
     event.preventDefault();
     if (!this.grid[x][y].getIsRevealed()) {

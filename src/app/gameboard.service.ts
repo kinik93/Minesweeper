@@ -47,54 +47,99 @@ export class GameBoardService {
     this.nRows = n;
   }
 
+  /**
+   * @returns Return the number of columns of the grid
+   */
   getNcolumns() {
     return this.nColumns;
   }
 
+  /**
+   * Set the number of columns of the grid
+   * @param n the new number of columns
+   */
   setNcolumns(n) {
     this.nColumns = n;
   }
 
+  /**
+   * @returns true if it's the first time you click a cell
+   */
   getFirstClick() {
     return this.firstClick;
   }
 
+  /**
+   * set if it's the first time you click a cell
+   * @param tmp
+   */
   setFirstClick(tmp: boolean) {
     this.firstClick = tmp;
   }
 
+  /**
+   * get the total number of mines
+   */
   getTotalMines() {
     return this.nMines;
   }
 
+  /**
+   * Set the total number of mines
+   * @param nMines the new number of total mines
+   */
   setTotalMines(nMines) {
     this.nMines = nMines;
   }
 
+  /**
+   * Get the total number of revealed mines
+   */
   getRevealedMines() {
     return this.revealedMines;
   }
 
+  /**
+   * Set the total number of revealed mines
+   * @param rMines the new number of revealed mines
+   */
   setRevealedMines(rMines) {
     this.revealedMines = rMines;
   }
 
+  /**
+   * @returns return the grid element
+   */
   getGrid() {
     return this.grid;
   }
 
+  /**
+   * @return return the difficult of actual gameplay
+   */
   getDifficulty() {
     return this.difficulty;
   }
 
+  /**
+   * Set the new difficulty of the game
+   * @param difficulty the new difficulty
+   */
   setDifficulty(difficulty) {
     this.difficulty = difficulty;
   }
 
+  /**
+   * @return return true if the player wins the game
+   */
   getWinning() {
     return this.winning;
   }
 
+  /**
+   * Set if the player wins the game
+   * @param status the new status
+   */
   setWinning(status: boolean) {
     this.winning = status;
   }
@@ -107,6 +152,9 @@ export class GameBoardService {
     this.counterTime = tmpTime;
   }
 
+  /**
+   * Initilize an empty grid without mines
+   */
   initializeEmptyGrid() {
     for (let i = 0; i < this.nRows; i++) {
       this.grid[i] = [];
@@ -116,6 +164,11 @@ export class GameBoardService {
     }
   }
 
+  /**
+   * Check if the cell in this position is a mine or not
+   * @param position the position to be checked
+   * @return true if the cell in position passed it's true
+   */
   checkMine(position: Point) {
     if (this.grid[position.x][position.y].getIsMine()) {
       return true;
@@ -124,7 +177,7 @@ export class GameBoardService {
   }
 
   /**
-   * Check if p2 is in the adjacent zone of p2
+   * Check if p2 is in the adjacent zone of p1
    * @param p1 first point
    * @param p2 second point
    */
@@ -141,6 +194,10 @@ export class GameBoardService {
     return false;
   }
 
+  /**
+   * Put the mines in random position over the grid
+   * @param firstClick the first point position click
+   */
   plantMines(firstClick: Point) {
     let i = 0;
 
@@ -156,6 +213,9 @@ export class GameBoardService {
     }
   }
 
+  /**
+   * Set all adjacent mines number over all the grid
+   */
   setAllAdjMines() {
     for (let i = 0; i < this.nRows; i++) {
       for (let j = 0; j < this.nColumns; j++) {
@@ -166,6 +226,12 @@ export class GameBoardService {
     }
   }
 
+  /**
+   * Count the adjacent mines in a certain cell
+   * @param x the x position of the cell to be checked
+   * @param y the y position of the cell to be checked
+   * @return return the number of adjacent mines
+   */
   countAdjMines(x: number, y: number) {
     let count = 0;
     for (let i = x - 1 ; i < x + 2; i++) {
@@ -182,6 +248,11 @@ export class GameBoardService {
     return count;
   }
 
+  /**
+   * Recursive function to reveal cell with no adjacent mines
+   * @param x the x position of cell clicked
+   * @param y the y position of cell clicked
+   */
   revealZeroCells(x: number, y: number) {
     for (let i = x - 1 ; i < x + 2; i++) {
       for (let j = y - 1 ; j < y + 2; j++) {
@@ -199,6 +270,9 @@ export class GameBoardService {
     }
   }
 
+  /**
+   * Check if the player wins the game
+   */
   checkVictory() {
     let revMines = 0;
     for (let i = 0; i < this.nRows; i++) {
@@ -216,6 +290,9 @@ export class GameBoardService {
     }
   }
 
+  /**
+   * Reveal all grid cells which are mines
+   */
   revealAllMines() {
     for (let i = 0; i < this.nRows; i++) {
       for (let j = 0; j < this.nColumns; j++) {
@@ -226,6 +303,9 @@ export class GameBoardService {
     }
   }
 
+  /**
+   * Start the chronometer and notify other possible components
+   */
   startChrono() {
     this.chronoSubscription = interval(1000).subscribe(count => {
       this.elapsedTime.emit(count);
@@ -233,11 +313,17 @@ export class GameBoardService {
     });
   }
 
+  /**
+   * Reset the chronometer and notify other possible components
+   */
   zeroChrono() {
     this.counterTime = 0;
     this.elapsedTime.emit(0);
   }
 
+  /**
+   * Stop the chronometer
+   */
   stopChrono() {
     if (this.chronoSubscription !== undefined) {
       this.chronoSubscription.unsubscribe();
