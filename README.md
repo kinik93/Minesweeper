@@ -4,6 +4,12 @@ This project is a simple [Angular](https://angular.io/) implementation of the po
 
 You can try a live of the game [HERE](https://kinik93.github.io/Minesweeper/)
 
+## Application screenshots
+
+Some screenshots of the application
+
+![alt screenshots](https://github.com/kinik93/Minesweeper/blob/master/minesweeper.gif)
+
 ## Development server
 
 Run `ng serve -o` for a dev server. 
