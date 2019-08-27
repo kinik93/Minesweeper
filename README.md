@@ -22,7 +22,9 @@ The app will automatically reload if you change any of the source files.
 
 | Package  |  Version | 
 |---|---|
+| Node.js | > 10.9.0 |
 | Angular  |  7 |  
 |  Bootstrap | 3  | 
 
-Install Bootstrap with `npm install --save bootstrap@3`
+* Install *Angular* with `npm install -g @angular/cli@7`
+* Install *Bootstrap* with `npm install --save bootstrap@3`
