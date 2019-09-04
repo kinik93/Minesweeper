@@ -2,21 +2,25 @@ import { Cell, Point } from './game-board/cell.model';
 import { interval, Subscription, Subject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
+/**
+ * In MVC architectural pattern this class represents the model of minesweeper game.
+ */
 export class GameBoardService {
-  grid: Cell[][] = [];
-  nRows: number;
-  nColumns: number;
-  nMines: number;
-  revealedMines: number;
+  grid: Cell[][] = []; // the grid of the game
+  nRows: number; // the number of rows of the game
+  nColumns: number; // the number of columns of the game
+  nMines: number; // total number of mines of the game
+  revealedMines: number; // the number of revealed mines of the game
   firstClick: boolean;
-  difficulty: string;
+  difficulty: string; // the difficulty of the game
   winning = false;
   counterTime = 0;
+  clickEnabled = true; // check if the user can reveal cells
 
   gridChange = new Subject<Cell[][]>();
 
   revMines = new EventEmitter<number>();
-  elapsedTime = new EventEmitter<number>();
+  elapsedTime = new EventEmitter<number>(); // the time passed from first click on the grid
   winEvent = new EventEmitter<boolean>();
 
   private chronoSubscription: Subscription;
@@ -152,6 +156,14 @@ export class GameBoardService {
     this.counterTime = tmpTime;
   }
 
+  getClickEnabled() {
+    return this.clickEnabled;
+  }
+
+  setClickEnabled(tmp: boolean) {
+    this.clickEnabled = tmp;
+  }
+
   /**
    * Initilize an empty grid without mines
    */
@@ -167,10 +179,10 @@ export class GameBoardService {
   /**
    * Check if the cell in this position is a mine or not
    * @param position the position to be checked
-   * @return true if the cell in position passed it's true
+   * @return true if the cell in the position passed it's a mine
    */
   checkMine(position: Point) {
-    if (this.grid[position.x][position.y].getIsMine()) {
+    if (this.grid[position.getX()][position.getY()].getIsMine()) {
       return true;
     }
     return false;
@@ -249,7 +261,9 @@ export class GameBoardService {
   }
 
   /**
-   * Recursive function to reveal cell with no adjacent mines
+   * Recursive function to reveal cell with no adjacent mines. At the end of the function
+   * we get a set of cell revealed and the border of this set is made by revealed cell with
+   * adjacent mines greater then zero.
    * @param x the x position of cell clicked
    * @param y the y position of cell clicked
    */

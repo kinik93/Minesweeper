@@ -1,5 +1,8 @@
 import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
 
+/**
+ * This directive class is used to control the toggle dropdown behaviour
+ */
 @Directive({
   selector: '[appDropdown]'
 })

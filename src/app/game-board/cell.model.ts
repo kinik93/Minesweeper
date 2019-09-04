@@ -1,5 +1,8 @@
+/**
+ * This class represent a 2D point with (x, y) position
+ */
 export class Point {
-  constructor(public x: number, public y: number) { }
+  constructor(private x: number, private y: number) { }
 
   getX() {
     return this.x;
@@ -10,6 +13,9 @@ export class Point {
   }
 }
 
+/**
+ * This class represents a cell of the grid of minesweeper game
+ */
 export class Cell {
   private position: Point;
   private isMine: boolean;
@@ -17,6 +23,14 @@ export class Cell {
   private isRevealed: boolean;
   private adjMines: number;
 
+  /**
+   * Create a new cell of the grid
+   * @param position the 2D position of the cell
+   * @param isMine true if the cell is a mine
+   * @param isFlag true if the cell is a flag
+   * @param isRevealed true if the cell is revealed
+   * @param adjMines the number of adjacent mines
+   */
   constructor(position: Point, isMine: boolean, isFlag: boolean, isRevealed: boolean, adjMines: number) {
     this.position = position;
     this.isMine = isMine;

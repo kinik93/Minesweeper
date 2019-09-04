@@ -4,6 +4,10 @@ import { GameBoardService } from '../gameboard.service';
 import { RankItem } from '../win-modal-box/win-modal-box.component';
 import { map } from 'rxjs/operators';
 
+/**
+ * In MVC architectural pattern this class represents the controller associated with
+ * ranktable view (the html file)
+ */
 @Component({
   selector: 'app-ranktable',
   templateUrl: './ranktable.component.html',
@@ -20,6 +24,7 @@ export class RanktableComponent implements OnInit {
 
   /**
    * Fetch the ranking from firebase server and sort data appropiately.
+   * The shorter the time the higher it's the final rank position
    * @param difficulty the difficulty of ranking to be obtained
    */
   fetchData(difficulty: string) {
@@ -47,14 +52,23 @@ export class RanktableComponent implements OnInit {
     this.fetchData(this.diff);
   }
 
+  /**
+   * Get beginner rankings
+   */
   onBeginnerClick() {
     this.fetchData('Beginner');
   }
 
+  /**
+   * Get intermediate rankings
+   */
   onIntermediateClick() {
     this.fetchData('Intermediate');
   }
 
+  /**
+   * Get expert rankings
+   */
   onExpertClick() {
     this.fetchData('Expert');
   }
