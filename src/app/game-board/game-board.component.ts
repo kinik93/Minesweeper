@@ -92,16 +92,18 @@ export class GameBoardComponent implements OnInit {
    * @param y
    */
   onRightCellClick(event, x: number, y: number) {
-    event.preventDefault();
-    if (!this.grid[x][y].getIsRevealed()) {
-      if (!this.grid[x][y].getIsFlag()) {
-        this.grid[x][y].setIsFlag(true);
-        this.gameBoardService.setRevealedMines(this.gameBoardService.getRevealedMines() - 1);
-      } else {
-        this.grid[x][y].setIsFlag(false);
-        this.gameBoardService.setRevealedMines(this.gameBoardService.getRevealedMines() + 1);
+    event.preventDefault(); // avoid standard menu visualization on right click
+    if (this.gameBoardService.getClickEnabled()) {
+      if (!this.grid[x][y].getIsRevealed()) {
+        if (!this.grid[x][y].getIsFlag()) {
+          this.grid[x][y].setIsFlag(true);
+          this.gameBoardService.setRevealedMines(this.gameBoardService.getRevealedMines() - 1);
+        } else {
+          this.grid[x][y].setIsFlag(false);
+          this.gameBoardService.setRevealedMines(this.gameBoardService.getRevealedMines() + 1);
+        }
+        this.gameBoardService.revMines.emit(this.gameBoardService.getRevealedMines());
       }
-      this.gameBoardService.revMines.emit(this.gameBoardService.getRevealedMines());
     }
   }
 }
