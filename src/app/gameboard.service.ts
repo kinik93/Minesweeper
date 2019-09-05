@@ -3,7 +3,7 @@ import { interval, Subscription, Subject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 /**
- * In MVC architectural pattern this class represents the model of minesweeper game.
+ * In MVC architectural pattern this class represents the model class.
  */
 export class GameBoardService {
   grid: Cell[][] = []; // the grid of the game
@@ -156,10 +156,17 @@ export class GameBoardService {
     this.counterTime = tmpTime;
   }
 
+  /**
+   * return true if the player if the player can click on cells
+   */
   getClickEnabled() {
     return this.clickEnabled;
   }
 
+  /**
+   * Set if the player can click on cells or not
+   * @param tmp if it is true the user can click on cells
+   */
   setClickEnabled(tmp: boolean) {
     this.clickEnabled = tmp;
   }
@@ -288,6 +295,7 @@ export class GameBoardService {
    * Check if the player wins the game
    */
   checkVictory() {
+    // count the number of cells revealed that are not mines
     let revMines = 0;
     for (let i = 0; i < this.nRows; i++) {
       for (let j = 0; j < this.nColumns; j++) {
@@ -296,6 +304,8 @@ export class GameBoardService {
         }
       }
     }
+
+    // depending on previous value check if the user win the game
     if (revMines === (this.nRows * this.nColumns) - this.nMines ) {
       console.log('you win');
       this.winning = true;
